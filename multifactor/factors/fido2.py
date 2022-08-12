@@ -44,9 +44,9 @@ def begin_registration(request):
             'displayName': request.user.get_username(),
         },
         get_user_credentials(request),
-        resident_key_requirement: mf_settings['FIDO_RK_REQUIRE'] or None,
-        user_verification: mf_settings['FIDO_UV'] or None,
-        authenticator_attachment: mf_settings['FIDO_AUTH_ATTACH'] or None,
+        mf_settings.get('FIDO_RK_REQUIRE', None),
+        mf_settings.get('FIDO_UV', None),
+        mf_settings.get('FIDO_AUTH_ATTACH', None),
     )
     request.session['fido_state'] = state
 
